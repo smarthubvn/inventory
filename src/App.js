@@ -7,49 +7,72 @@ import { useState } from "react";
 import AddItem from "./components/AddItem";
 import ItemsDisplay from "./components/ItemsDisplay";
 import AddStudent from "./components/AddStudent";
-import ShowStudentList from "./components/ShowStudentList";
 
 function App() {
   const [filters, setFilters] = useState({});
   const [data, setData] = useState({ items: [] });
-
-  const [studentList, setStudentList] = useState([]);
 
   const updateFilters = (searchParams) => {
     setFilters(searchParams);
   };
   const addItemToData = (item) => {
     let items = data["items"];
-    item.id = items.length;
-    items.push(item);
-    setData({ items: items });
-    console.log(data);
+    // item.id = items.length;
+
+    const requestOption = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    };
+    fetch("http://localhost:3000/items", requestOption)
+      .then((response) => response.json())
+      .then((data) => {
+        items.push(data);
+        setData({ items: items });
+      });
+    /*
+    get
+    post
+    put
+    delete
+    */
   };
 
-  const updateStudentList = (student) => {
-    studentList.push(student);
-    setStudentList(studentList);
-    console.log(studentList);
+  const filterData = (data) => {
+    const filteredData = [];
+    // if (!filters.name) {
+    //   return data;
+    // }
+    for (const item of data) {
+      if (filters.name != "" && item.name !== filters.name) {
+        continue;
+      }
+      if (filters.price !== 0 && item.price > filters.price) {
+        continue;
+      }
+      if (filters.type !== "" && item.type !== filters.type) {
+        continue;
+      }
+      if (filters.brand !== "" && item.brand !== filters.brand) {
+        continue;
+      }
+      filteredData.push(item);
+    }
+    return filteredData;
   };
-
   return (
-    <div className="App">
-      {/* <Info /> */}
-      {/* <Info title="This is Title" showTitle="true"/>
-      <FormItem text="lee" number={68}/>
-      <FormItem text="phong"/>
-      <FormItem /> */}
-      {/* <ButtonState></ButtonState> */}
-      <SearchBar updateSearchParams={updateFilters} />
-      {/* <p>{"filter" in filters ? filters["filter"] : "no data to display"}</p> */}
-      {/* <p>Name: {"name" in filters ? filters["name"] : "no data to display"}</p>
-      <p>Max Price: {"price" in filters ? filters["price"] : "no data to display"}</p>
-      <p>Type: {"type" in filters ? filters["type"] : "no data to display"}</p>
-      <p>Brand: {"brand" in filters ? filters["brand"] : "no data to display"}</p> */}
-      <ItemsDisplay items={data["items"]} />
-      <AddItem addItem={addItemToData} />
-      {/* <AddStudent addStudent={updateStudentList} />
-      <ShowStudentList data={studentList} /> */}
+    <div className="container">
+      <div className="row mt-3">
+        <ItemsDisplay items={filterData(data["items"])} />
+      </div>
+      <div className="row mt-3">
+        <SearchBar updateSearchParams={updateFilters} />
+      </div>
+      <div className="row mt-3">
+        <AddItem addItem={addItemToData} />
+      </div>
     </div>
   );
 }

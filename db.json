@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "name": "bicycle",
+      "price": "55",
+      "type": "Transport",
+      "brand": "BridgeStone",
+      "id": 1
+    },
+    {
+      "name": "hello",
+      "price": "66",
+      "type": "log",
+      "brand": "gucci",
+      "id": 2
+    }
+  ]
+}

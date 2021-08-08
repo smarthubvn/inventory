@@ -19,12 +19,15 @@ function AddItem(props) {
     setBrand("");
   };
   return (
-    <div>
-      <h2>Add an Item</h2>
-      <form action="">
+    <div className="container">
+      <div className="row">
+        <h2>Add an Item</h2>
+      </div>
+      <div className="row">
         <label htmlFor="name-field">Name:</label>
         <input
           type="text"
+          className="form-control"
           id="name-field"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -32,6 +35,7 @@ function AddItem(props) {
         <label htmlFor="price-field">Price:</label>
         <input
           type="number"
+          className="form-control"
           id="price-field"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
@@ -39,6 +43,7 @@ function AddItem(props) {
         <label htmlFor="type-field">Type:</label>
         <input
           type="text"
+          className="form-control"
           id="type-field"
           value={type}
           onChange={(e) => setType(e.target.value)}
@@ -46,14 +51,21 @@ function AddItem(props) {
         <label htmlFor="brand-field">Brand:</label>
         <input
           type="text"
+          className="form-control"
           id="brand-field"
           value={brand}
           onChange={(e) => setBrand(e.target.value)}
         />
-        <button type="button" onClick={addItemButtonPressed}>
+      </div>
+      <div className="row">
+        <button
+          className="mt-3 btn btn-primary"
+          type="button"
+          onClick={addItemButtonPressed}
+        >
           Add
         </button>
-      </form>
+      </div>
     </div>
   );
 }
