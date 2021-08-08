@@ -7,6 +7,7 @@ import { useState } from "react";
 import AddItem from "./components/AddItem";
 import ItemsDisplay from "./components/ItemsDisplay";
 import AddStudent from "./components/AddStudent";
+import Test from "./components/Class";
 
 function App() {
   const [filters, setFilters] = useState({});
@@ -15,6 +16,9 @@ function App() {
   const updateFilters = (searchParams) => {
     setFilters(searchParams);
   };
+
+  const [showTest, setShowTest] = useState(true);
+
   const addItemToData = (item) => {
     let items = data["items"];
     // item.id = items.length;
@@ -73,6 +77,7 @@ function App() {
       <div className="row mt-3">
         <AddItem addItem={addItemToData} />
       </div>
+      {showTest ? <Test destroy={setShowTest} /> : null}
     </div>
   );
 }

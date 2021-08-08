@@ -13,6 +13,41 @@
       "type": "log",
       "brand": "gucci",
       "id": 2
+    },
+    {
+      "name": "bicycle",
+      "price": "77",
+      "type": "Transport",
+      "brand": "BridgeStone",
+      "id": 3
+    },
+    {
+      "name": "",
+      "price": 0,
+      "type": "",
+      "brand": "",
+      "id": 4
+    },
+    {
+      "name": "",
+      "price": 0,
+      "type": "",
+      "brand": "",
+      "id": 5
+    },
+    {
+      "name": "",
+      "price": 0,
+      "type": "",
+      "brand": "",
+      "id": 6
+    },
+    {
+      "name": "",
+      "price": 0,
+      "type": "",
+      "brand": "",
+      "id": 7
     }
   ]
 }
